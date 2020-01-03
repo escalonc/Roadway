@@ -19,11 +19,10 @@ namespace Roadway.Domain.CarsAggregate
         public Fuels Fuel { get; }
 
         public Sizes Size { get; }
-        
+
         public Uses Use { get; }
-        
+
         public CarType CarType { get; }
-        
     }
 
     public enum Uses
