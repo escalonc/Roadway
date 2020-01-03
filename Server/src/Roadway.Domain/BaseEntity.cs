@@ -1,4 +1,4 @@
-namespace Roadway.Domain.Common
+namespace Roadway.Domain
 {
     public class BaseEntity
     {

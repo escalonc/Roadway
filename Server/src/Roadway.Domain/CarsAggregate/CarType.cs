@@ -1,4 +1,4 @@
-namespace Roadway.Domain.CarsAggreate
+namespace Roadway.Domain.CarsAggregate
 {
     public class CarType : BaseEntity, IAggregateRoot
     {

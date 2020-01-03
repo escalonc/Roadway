@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Roadway.Domain.CarsAggreate;
+using Roadway.Domain.CarsAggregate;
 
 namespace Roadway.Data.Contexts
 {
