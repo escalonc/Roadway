@@ -1,4 +1,4 @@
-namespace Roadway.Domain
+namespace Roadway.Domain.Contracts
 {
     public interface IAggregateRoot
     {
