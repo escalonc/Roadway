@@ -4,6 +4,5 @@ namespace Roadway.Data.Tests.Repositories
 {
     public class CarRepositoryTest : InMemoryRoadwayContextFixture
     {
-        
     }
 }

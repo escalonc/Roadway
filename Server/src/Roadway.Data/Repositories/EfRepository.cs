@@ -10,7 +10,7 @@ namespace Roadway.Data.Repositories
 {
     public abstract class EfRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity, IAggregateRoot
     {
-        protected DbContext Context { get; }
+        private DbContext Context { get; }
 
         protected EfRepository(DbContext context)
         {
@@ -19,47 +19,54 @@ namespace Roadway.Data.Repositories
 
         public IQueryable<TEntity> All()
         {
-            return this.Context.Set<TEntity>();
+            return Context.Set<TEntity>();
         }
 
         public IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return All().Where(predicate);
         }
 
-        public Task<TEntity> FirstAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> FirstAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Filter(predicate).FirstAsync();
         }
 
-        public Task<TEntity> FindAsync(params object[] keys)
+        public async Task<TEntity> FindAsync(params object[] keys)
         {
-            throw new NotImplementedException();
+            return await ((DbSet<TEntity>) All()).FindAsync(keys);
         }
 
-        public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await All().FirstOrDefaultAsync(predicate);
         }
 
-        public Task<TEntity> AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            await Context.Set<TEntity>().AddAsync(entity);
+            await Context.SaveChangesAsync();
+
+            return entity;
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            Context.Entry(entity).State = EntityState.Modified;
+            await Context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            Context.Set<TEntity>().Remove(entity);
+            await Context.SaveChangesAsync();
         }
 
-        public Task<TEntity> Disable(TEntity entity)
+        public async Task<TEntity> Disable(TEntity entity)
         {
-            throw new NotImplementedException();
+            entity.Disabled = true;
+            await UpdateAsync(entity);
+            return entity;
         }
     }
 }

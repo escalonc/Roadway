@@ -4,6 +4,6 @@ namespace Roadway.Domain
     {
         public int Id { get; }
 
-        public bool Disabled { get; }
+        public bool Disabled { get; set; }
     }
 }

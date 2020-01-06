@@ -8,7 +8,7 @@ namespace Roadway.Domain.Contracts
     public interface IBaseRepository<TEntity> where TEntity : BaseEntity, IAggregateRoot
     {
         /// <summary>
-        /// When is override in a deriver type, returns all the elements in the entity set.
+        /// When is override in a derived type, returns all the elements in the entity set.
         /// </summary>
         /// <returns>
         /// An <see cref="IQueryable"/> for all the elements in the entity set

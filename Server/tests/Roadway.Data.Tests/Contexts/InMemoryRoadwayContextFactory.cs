@@ -8,7 +8,7 @@ namespace Roadway.Data.Tests.Contexts
         public static RoadwayContext Create()
         {
             var options = new DbContextOptionsBuilder<RoadwayContext>()
-                .UseInMemoryDatabase(databaseName: "RoadwayTest")
+                .UseInMemoryDatabase("RoadwayTest")
                 .Options;
             var dbContext = new RoadwayContext(options);
 
