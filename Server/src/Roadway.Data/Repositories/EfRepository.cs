@@ -62,7 +62,7 @@ namespace Roadway.Data.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public async Task<TEntity> Disable(TEntity entity)
+        public async Task<TEntity> DisableAsync(TEntity entity)
         {
             entity.Disabled = true;
             await UpdateAsync(entity);
