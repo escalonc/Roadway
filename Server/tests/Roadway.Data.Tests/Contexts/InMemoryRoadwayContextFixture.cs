@@ -5,16 +5,16 @@ namespace Roadway.Data.Tests.Contexts
 {
     public class InMemoryRoadwayContextFixture : IDisposable
     {
-        protected readonly RoadwayContext DatabaseContext;
+        protected readonly RoadwayContext RoadwayContext;
 
         protected InMemoryRoadwayContextFixture()
         {
-            DatabaseContext = InMemoryRoadwayContextFactory.Create();
+            RoadwayContext = InMemoryRoadwayContextFactory.Create();
         }
 
         public void Dispose()
         {
-            DatabaseContext.Database.EnsureDeleted();
+            RoadwayContext.Database.EnsureDeleted();
         }
     }
 }

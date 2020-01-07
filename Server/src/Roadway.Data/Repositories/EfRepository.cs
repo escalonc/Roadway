@@ -8,7 +8,7 @@ using Roadway.Domain.Contracts;
 
 namespace Roadway.Data.Repositories
 {
-    public abstract class EfRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity, IAggregateRoot
+    public class EfRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity, IAggregateRoot
     {
         private DbContext Context { get; }
 

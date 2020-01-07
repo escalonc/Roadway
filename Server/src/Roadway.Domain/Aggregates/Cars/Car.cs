@@ -30,6 +30,10 @@ namespace Roadway.Domain.Aggregates.Cars
             Use = use;
             CarType = carType;
         }
+        
+        public Car()
+        {
+        }
 
         public string Vin { get; }
 
