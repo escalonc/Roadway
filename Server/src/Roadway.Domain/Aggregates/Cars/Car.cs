@@ -4,19 +4,8 @@ namespace Roadway.Domain.Aggregates.Cars
 {
     public class Car : BaseEntity, IAggregateRoot
     {
-        public Car(
-            string vin,
-            string licensePlate,
-            string brand,
-            string model,
-            string version,
-            ushort year,
-            string color,
-            Fuels fuel,
-            Sizes size,
-            Uses use,
-            CarType carType
-        )
+        public Car(string vin, string licensePlate, string brand, string model, string version, ushort year,
+            string color, Fuels fuel, Sizes size, Uses use, CarType carType)
         {
             Vin = vin;
             LicensePlate = licensePlate;
@@ -30,32 +19,32 @@ namespace Roadway.Domain.Aggregates.Cars
             Use = use;
             CarType = carType;
         }
-        
-        public Car()
+
+        private Car()
         {
         }
 
-        public string Vin { get; }
+        public string Vin { get; set; }
 
-        public string LicensePlate { get; }
+        public string LicensePlate { get; set; }
 
-        public string Brand { get; }
+        public string Brand { get; set; }
 
-        public string Model { get; }
+        public string Model { get; set; }
 
-        public string Version { get; }
+        public string Version { get; set; }
 
-        public ushort Year { get; }
+        public ushort Year { get; set; }
 
-        public string Color { get; }
+        public string Color { get; set; }
 
-        public Fuels Fuel { get; }
+        public Fuels Fuel { get; set; }
 
-        public Sizes Size { get; }
+        public Sizes Size { get; set; }
 
-        public Uses Use { get; }
+        public Uses Use { get; set; }
 
-        public CarType CarType { get; }
+        public CarType CarType { get; set; }
     }
 
     public enum Uses

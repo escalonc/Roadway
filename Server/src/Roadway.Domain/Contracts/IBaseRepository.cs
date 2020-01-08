@@ -90,5 +90,7 @@ namespace Roadway.Domain.Contracts
         public Task DeleteAsync(TEntity entity);
 
         public Task<TEntity> DisableAsync(TEntity entity);
+
+        public int Count();
     }
 }

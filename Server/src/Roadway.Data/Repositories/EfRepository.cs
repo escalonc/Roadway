@@ -68,5 +68,10 @@ namespace Roadway.Data.Repositories
             await UpdateAsync(entity);
             return entity;
         }
+
+        public int Count()
+        {
+            return Context.Set<TEntity>().Count();
+        }
     }
 }

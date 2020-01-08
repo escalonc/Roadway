@@ -9,10 +9,10 @@ namespace Roadway.Domain.Aggregates.Cars
             Name = name;
         }
 
-        public CarType()
+        private CarType()
         {
         }
 
-        public string Name { get; }
+        public string Name { get; set; }
     }
 }

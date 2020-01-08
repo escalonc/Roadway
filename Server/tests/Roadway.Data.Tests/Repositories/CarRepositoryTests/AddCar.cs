@@ -13,11 +13,11 @@ namespace Roadway.Data.Tests.Repositories.CarRepositoryTests
     public class AddCar : InMemoryRoadwayContextFixture
     {
         [Fact]
-        public void Add_Car_IncreaseCountByOne()
+        public async Task Add_Car_IncreaseCountByOne()
         {
             var repository = new CarRepository(RoadwayContext);
-            
-            var car = new CarBuilder("123")
+
+            var carStub = new CarBuilder("123")
                 .SetLicensePlate("123")
                 .SetBrand("Toyota")
                 .SetModel("Corolla")
@@ -27,19 +27,13 @@ namespace Roadway.Data.Tests.Repositories.CarRepositoryTests
                 .SetFuel(Fuels.Diesel)
                 .SetSize(Sizes.Medium)
                 .SetUse(Uses.Personal)
-                .SetType(new CarType("Ass"))
+                .SetType(new CarType("Normal"))
                 .Build();
-            
-            // var car = new Car("123", "xyz", "Toyota", "Corolla", "American", 1997, "Yellow", Fuels.Diesel, Sizes.Large, Uses.Personal, new CarType("Add"));
 
-            // await repository.AddAsync(car);
-            // var selectedCar = await repository
-            //     .FirstOrDefaultAsync(x => x.Brand.Equals("Toyota"));
+            await repository.AddAsync(carStub);
+            var carsAmount = repository.Count();
 
-             RoadwayContext.Cars.Add(car);
-            var selectedCar = RoadwayContext.Cars.AsEnumerable().FirstOrDefault(x => x.Brand.Equals("Toyota"));
-            
-            selectedCar.Should().NotBeNull();
+            carsAmount.Should().Be(1);
         }
     }
 }

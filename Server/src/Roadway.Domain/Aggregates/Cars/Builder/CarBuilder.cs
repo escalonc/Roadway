@@ -1,5 +1,3 @@
-using Roadway.Domain.Aggregates.Cars.Builder.Steps;
-
 namespace Roadway.Domain.Aggregates.Cars.Builder
 {
     public class CarBuilder : ICarBuilder
@@ -8,7 +6,7 @@ namespace Roadway.Domain.Aggregates.Cars.Builder
         {
             Vin = vin;
         }
-        
+
         public string Vin { get; }
         public string LicensePlate { get; private set; }
         public string Brand { get; private set; }
@@ -20,67 +18,67 @@ namespace Roadway.Domain.Aggregates.Cars.Builder
         public Sizes Size { get; private set; }
         public Uses Use { get; private set; }
         public CarType Type { get; private set; }
-        
-        public IBrandBuilderStep SetLicensePlate(string licensePlate)
+
+        public ICarBuilder SetLicensePlate(string licensePlate)
         {
             LicensePlate = licensePlate;
             return this;
         }
-        
-        public IModelBuilderStep SetBrand(string brand)
+
+        public ICarBuilder SetBrand(string brand)
         {
             Brand = brand;
             return this;
         }
 
-        public IFuelBuilderStep SetColor(string color)
+        public ICarBuilder SetColor(string color)
         {
             Color = color;
             return this;
         }
 
-        public ISizeBuilderStep SetFuel(Fuels fuel)
+        public ICarBuilder SetFuel(Fuels fuel)
         {
             Fuel = fuel;
             return this;
         }
 
-        public IVersionBuilderStep SetModel(string model)
+        public ICarBuilder SetModel(string model)
         {
             Model = model;
             return this;
         }
 
-        public IUseBuilderStep SetSize(Sizes size)
+        public ICarBuilder SetSize(Sizes size)
         {
             Size = size;
             return this;
         }
 
-        public ICarTypeBuilderStep SetUse(Uses use)
+        public ICarBuilder SetUse(Uses use)
         {
             Use = use;
             return this;
         }
 
-        public IYearBuilderStep SetVersion(string version)
+        public ICarBuilder SetVersion(string version)
         {
             Version = version;
             return this;
         }
 
-        public IColorBuilderStep SetYear(ushort year)
+        public ICarBuilder SetYear(ushort year)
         {
             Year = year;
             return this;
         }
-        
-        public IFinalBuilderStep SetType(CarType type)
+
+        public ICarBuilder SetType(CarType type)
         {
             Type = type;
             return this;
         }
-        
+
         public Car Build()
         {
             return new Car

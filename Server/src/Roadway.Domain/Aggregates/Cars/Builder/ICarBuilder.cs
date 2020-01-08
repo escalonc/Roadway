@@ -1,19 +1,27 @@
-using Roadway.Domain.Aggregates.Cars.Builder.Steps;
-
 namespace Roadway.Domain.Aggregates.Cars.Builder
 {
-    public interface ICarBuilder :
-        ICarTypeBuilderStep, 
-        IColorBuilderStep,
-        IBrandBuilderStep,
-        IFuelBuilderStep,
-        ILicensePlateBuilderStep,
-        IModelBuilderStep,
-        ISizeBuilderStep,
-        IUseBuilderStep,
-        IVersionBuilderStep, 
-        IYearBuilderStep,
-        IFinalBuilderStep
+    public interface ICarBuilder 
     {
+        ICarBuilder SetBrand(string model);
+        
+        ICarBuilder SetType(CarType type);
+        
+        ICarBuilder SetColor(string color);
+        
+        ICarBuilder SetFuel(Fuels fuel);
+        
+        ICarBuilder SetLicensePlate(string licensePlate);
+        
+        ICarBuilder SetModel(string model);
+        
+        ICarBuilder SetSize(Sizes size);
+        
+        ICarBuilder SetUse(Uses use);
+        
+        ICarBuilder SetVersion(string version);
+        
+        ICarBuilder SetYear(ushort year);
+        
+        Car Build();
     }
 }
