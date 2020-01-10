@@ -17,12 +17,16 @@ namespace Roadway.Domain.Aggregates.Customers
             SecondLastName = secondLastName;
         }
 
-        public string FirstName { get; }
+        private Customer()
+        {
+        }
 
-        public string MiddleName { get; }
+        public string FirstName { get; set; }
 
-        public string LastName { get; }
+        public string MiddleName { get; set; }
 
-        public string SecondLastName { get; }
+        public string LastName { get; set; }
+
+        public string SecondLastName { get; set; }
     }
 }

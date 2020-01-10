@@ -1,3 +1,4 @@
+using Roadway.Domain.Aggregates.Customers;
 using Roadway.Domain.Contracts;
 
 namespace Roadway.Domain.Aggregates.Cars
@@ -5,7 +6,7 @@ namespace Roadway.Domain.Aggregates.Cars
     public class Car : BaseEntity, IAggregateRoot
     {
         public Car(string vin, string licensePlate, string brand, string model, string version, ushort year,
-            string color, Fuels fuel, Sizes size, Uses use, CarType carType)
+            string color, Fuels fuel, Sizes size, Uses use, CarType carType, Customer customer)
         {
             Vin = vin;
             LicensePlate = licensePlate;
@@ -18,10 +19,12 @@ namespace Roadway.Domain.Aggregates.Cars
             Size = size;
             Use = use;
             CarType = carType;
+            Customer = customer;
         }
 
-        private Car()
+        private Car(Customer customer)
         {
+            Customer = customer;
         }
 
         public string Vin { get; set; }
@@ -45,6 +48,8 @@ namespace Roadway.Domain.Aggregates.Cars
         public Uses Use { get; set; }
 
         public CarType CarType { get; set; }
+
+        public Customer Customer { get; set; }
     }
 
     public enum Uses

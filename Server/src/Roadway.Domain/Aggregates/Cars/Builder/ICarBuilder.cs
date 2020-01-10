@@ -1,3 +1,5 @@
+using Roadway.Domain.Aggregates.Customers;
+
 namespace Roadway.Domain.Aggregates.Cars.Builder
 {
     public interface ICarBuilder 
@@ -21,6 +23,8 @@ namespace Roadway.Domain.Aggregates.Cars.Builder
         ICarBuilder SetVersion(string version);
         
         ICarBuilder SetYear(ushort year);
+
+        ICarBuilder SetCustomer(Customer customer);
         
         Car Build();
     }

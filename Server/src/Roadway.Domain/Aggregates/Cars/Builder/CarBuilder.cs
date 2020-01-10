@@ -1,3 +1,5 @@
+using Roadway.Domain.Aggregates.Customers;
+
 namespace Roadway.Domain.Aggregates.Cars.Builder
 {
     public class CarBuilder : ICarBuilder
@@ -18,6 +20,8 @@ namespace Roadway.Domain.Aggregates.Cars.Builder
         public Sizes Size { get; private set; }
         public Uses Use { get; private set; }
         public CarType Type { get; private set; }
+
+        public Customer Customer { get; private set; }
 
         public ICarBuilder SetLicensePlate(string licensePlate)
         {
@@ -73,6 +77,12 @@ namespace Roadway.Domain.Aggregates.Cars.Builder
             return this;
         }
 
+        public ICarBuilder SetCustomer(Customer customer)
+        {
+            Customer = customer;
+            return this;
+        }
+
         public ICarBuilder SetType(CarType type)
         {
             Type = type;
@@ -93,7 +103,8 @@ namespace Roadway.Domain.Aggregates.Cars.Builder
                 Fuel,
                 Size,
                 Use,
-                Type
+                Type,
+                Customer
             );
         }
     }
