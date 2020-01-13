@@ -5,6 +5,7 @@ namespace Roadway.Domain.Aggregates.Customers
     public class Customer : BaseEntity, IAggregateRoot
     {
         public Customer(
+            int id,
             string firstName,
             string middleName,
             string lastName,
@@ -15,6 +16,7 @@ namespace Roadway.Domain.Aggregates.Customers
             MiddleName = middleName;
             LastName = lastName;
             SecondLastName = secondLastName;
+            Id = id;
         }
 
         private Customer()

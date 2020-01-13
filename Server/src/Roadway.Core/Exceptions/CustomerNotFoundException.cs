@@ -1,6 +1,6 @@
 using System;
 
-namespace Roadway.Core.Customer
+namespace Roadway.Core.Exceptions
 {
     public class CustomerNotFoundException : Exception
     {

@@ -15,4 +15,9 @@
         <PackageReference Include="coverlet.collector" Version="1.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Roadway.Core\Roadway.Core.csproj" />
+      <ProjectReference Include="..\..\src\Roadway.Domain\Roadway.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

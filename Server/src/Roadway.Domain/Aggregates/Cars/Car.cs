@@ -22,12 +22,11 @@ namespace Roadway.Domain.Aggregates.Cars
             Customer = customer;
         }
 
-        private Car(Customer customer)
+        private Car()
         {
-            Customer = customer;
         }
 
-        public string Vin { get; set; }
+        public string Vin { get; private set; }
 
         public string LicensePlate { get; set; }
 
@@ -50,6 +49,16 @@ namespace Roadway.Domain.Aggregates.Cars
         public CarType CarType { get; set; }
 
         public Customer Customer { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Car car && this.Vin.Equals(car.Vin);
+        }
+
+        public override int GetHashCode()
+        {
+            return Vin.GetHashCode();
+        }
     }
 
     public enum Uses

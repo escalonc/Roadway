@@ -38,11 +38,11 @@ namespace Roadway.Domain.Contracts
         public Task<TEntity> FirstAsync(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// /// Search entities inhronous way.
+        /// /// Search entities by id.
         /// </summary>
-        /// <param name="keys">Entity identifier.</param>
+        /// <param name="id">Entity identifier.</param>
         /// <returns>A task of the entity.</returns>
-        public Task<TEntity> FindAsync(params object[] keys);
+        public Task<TEntity> FindById(int id);
 
 
         /// <summary>

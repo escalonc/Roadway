@@ -32,9 +32,9 @@ namespace Roadway.Data.Repositories
             return await Filter(predicate).FirstAsync();
         }
 
-        public async Task<TEntity> FindAsync(params object[] keys)
+        public async Task<TEntity> FindById(int id)
         {
-            return await ((DbSet<TEntity>) All()).FindAsync(keys);
+            return await FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
