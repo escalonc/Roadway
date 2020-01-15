@@ -4,15 +4,16 @@ using Roadway.Data.Contexts;
 
 namespace Roadway.Data.Tests.Contexts
 {
-    public static class InMemoryRoadwayContextFactory
+    public static class InMemoryDatabaseContextFactory
     {
-        public static RoadwayContext Create(SqliteConnection connection)
+        public static TestContext Create(SqliteConnection connection)
         {
-            var options = new DbContextOptionsBuilder<RoadwayContext>()
+            var options = new DbContextOptionsBuilder<TestContext>()
                 .UseSqlite(connection)
+                .EnableSensitiveDataLogging()
                 .Options;
             
-            var dbContext = new RoadwayContext(options);
+            var dbContext = new TestContext(options);
             dbContext.Database.EnsureCreated();
 
             return dbContext;

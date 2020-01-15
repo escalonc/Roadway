@@ -1,7 +1,10 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Moq;
 using Roadway.Core.Cars;
+using Roadway.Core.Exceptions;
 using Roadway.Domain.Aggregates.Cars;
 using Roadway.Domain.Aggregates.Cars.Builder;
 using Roadway.Domain.Aggregates.Customers;
@@ -11,20 +14,13 @@ namespace Roadway.Core.Tests
 {
     public class CreateCar
     {
-        [Fact]
-        public async Task Create_Car_CallRepository()
+        private readonly Car _stubCar;
+        private readonly Customer _stubCustomer;
+
+        public CreateCar()
         {
-            var carRepositoryMock = new Mock<ICarRepository>();
-            var customerRepositoryMock = new Mock<ICustomerRepository>();
-
-            customerRepositoryMock
-                .Setup(m => m.FindById(It.Is<int>(i => i == 3)))
-                .ReturnsAsync(
-                    new Customer(3, "AAA", "", "Foster", ""));
-
-            var carService = new CarService(carRepositoryMock.Object, customerRepositoryMock.Object);
-
-            var fakeCar = new CarBuilder("123")
+            _stubCustomer = new Customer(3, "Mark", "", "Foster", "");
+            _stubCar = new CarBuilder("123")
                 .SetBrand("Toyota")
                 .SetColor("blue")
                 .SetFuel(Fuels.Diesel)
@@ -35,12 +31,42 @@ namespace Roadway.Core.Tests
                 .SetVersion("American")
                 .SetYear(1997)
                 .SetLicensePlate("AAAA")
-                .SetCustomer(new Customer(3, "Mark", "", "Foster", ""))
+                .SetCustomer(_stubCustomer)
                 .Build();
+        }
 
-            await carService.Create(fakeCar);
+        [Fact]
+        public async Task Create_Car_CallRepository()
+        {
+            var carRepositoryMock = new Mock<ICarRepository>();
+            var customerRepositoryMock = new Mock<ICustomerRepository>();
 
-            carRepositoryMock.Verify(car => car.AddAsync(fakeCar), Times.Once);
+            customerRepositoryMock
+                .Setup(m => m.FindById(It.Is<int>(i => i == 3)))
+                .ReturnsAsync(
+                    _stubCustomer);
+
+            var carService = new CarService(carRepositoryMock.Object, customerRepositoryMock.Object);
+            await carService.Create(_stubCar);
+
+            carRepositoryMock.Verify(car => car.AddAsync(_stubCar), Times.Once);
+        }
+
+        [Fact]
+        public void Create_Throws_CustomerNotFound()
+        {
+            var carRepositoryMock = new Mock<ICarRepository>();
+            var customerRepositoryMock = new Mock<ICustomerRepository>();
+
+            customerRepositoryMock
+                .Setup(m => m.FindById(It.Is<int>(i => i == 2)))
+                .ReturnsAsync(
+                    _stubCustomer);
+
+            var carService = new CarService(carRepositoryMock.Object, customerRepositoryMock.Object);
+            Func<Task> createCar = async () => { await carService.Create(_stubCar); };
+
+            createCar.Should().Throw<CustomerNotFoundException>();
         }
     }
 }

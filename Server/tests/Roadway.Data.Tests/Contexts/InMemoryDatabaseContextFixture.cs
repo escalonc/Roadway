@@ -4,21 +4,21 @@ using Roadway.Data.Contexts;
 
 namespace Roadway.Data.Tests.Contexts
 {
-    public class InMemoryRoadwayContextFixture : IDisposable
+    public class InMemoryDatabaseContextFixture : IDisposable
     {
-        protected readonly RoadwayContext RoadwayContext;
+        protected readonly TestContext TestContext;
         private readonly SqliteConnection _connection;
 
-        protected InMemoryRoadwayContextFixture()
+        protected InMemoryDatabaseContextFixture()
         {
             _connection = new SqliteConnection("DataSource=:memory:");
             _connection.Open();
-            RoadwayContext = InMemoryRoadwayContextFactory.Create(_connection);
+            TestContext = InMemoryDatabaseContextFactory.Create(_connection);
         }
 
         public void Dispose()
         {
-            RoadwayContext.Database.EnsureDeleted();
+            TestContext.Database.EnsureDeleted();
             _connection.Close();
         }
     }
