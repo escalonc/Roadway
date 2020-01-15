@@ -8,8 +8,4 @@
       <ProjectReference Include="..\Roadway.Domain\Roadway.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Customers" />
-    </ItemGroup>
-
 </Project>

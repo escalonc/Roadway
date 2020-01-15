@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Roadway.Core\Roadway.Core.csproj" />
+      <ProjectReference Include="..\Roadway.Domain\Roadway.Domain.csproj" />
+    </ItemGroup>
 
 
 </Project>
