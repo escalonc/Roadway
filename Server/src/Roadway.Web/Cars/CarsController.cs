@@ -1,30 +1,53 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Roadway.Core.Cars;
-using Roadway.Domain.Aggregates.Cars;
 
 namespace Roadway.Web.Cars
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class CarsController : Controller
+    public class CarsController : ControllerBase
     {
-        private readonly ICarService _carService;
         private readonly ILogger<CarsController> _logger;
+        private readonly ICarService _carService;
 
         public CarsController(ICarService carService, ILogger<CarsController> logger)
         {
             _carService = carService;
             _logger = logger;
         }
-        
-        [HttpPost]
-        public IActionResult Post([FromBody]CarRequestViewModel car)
+
+        // GET: api/Cars
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
-            return Json(new {Name = " "});
+            return new string[] { "value1", "value2" };
+        }
+
+        // GET: api/Cars/5
+        [HttpGet("{id}", Name = "Get")]
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        // POST: api/Cars
+        [HttpPost]
+        public void Post([FromBody] string value)
+        {
+        }
+
+        // PUT: api/Cars/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
         }
     }
 }
