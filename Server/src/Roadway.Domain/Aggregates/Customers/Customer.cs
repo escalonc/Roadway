@@ -16,7 +16,7 @@ namespace Roadway.Domain.Aggregates.Customers
             LastName = lastName;
             SecondLastName = secondLastName;
         }
-        
+
         public Customer(
             int id,
             string firstName,
@@ -32,7 +32,7 @@ namespace Roadway.Domain.Aggregates.Customers
             Id = id;
         }
 
-        private Customer()
+        public Customer()
         {
         }
 

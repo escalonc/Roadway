@@ -6,17 +6,19 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Roadway.Core\Roadway.Core.csproj" />
+      <ProjectReference Include="..\Roadway.Data\Roadway.Data.csproj" />
       <ProjectReference Include="..\Roadway.Domain\Roadway.Domain.csproj" />
     </ItemGroup>
 
 
     <ItemGroup>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0" />
     </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ namespace Roadway.Domain.Aggregates.Cars
             Name = name;
         }
 
-        private CarType()
+        public CarType()
         {
         }
 

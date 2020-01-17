@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Roadway.Domain.Aggregates.Cars;
+using Roadway.Domain.Aggregates.Customers;
 
 namespace Roadway.Data.Contexts
 {
@@ -12,5 +13,7 @@ namespace Roadway.Data.Contexts
         public DbSet<Car> Cars { get; set; }
 
         public DbSet<CarType> CarTypes { get; set; }
+
+        public DbSet<Customer> Customers { get; set; }
     }
 }

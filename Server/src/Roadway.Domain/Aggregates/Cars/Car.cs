@@ -63,25 +63,25 @@ namespace Roadway.Domain.Aggregates.Cars
 
     public enum Uses
     {
-        Personal,
-        Rental,
-        Government,
-        Official
+        Personal = 1,
+        Rental = 2,
+        Government = 3,
+        Official = 4,
     }
 
     public enum Sizes
     {
-        Small,
-        Medium,
-        Large,
-        ExtraLarge
+        Small = 1,
+        Medium = 2,
+        Large = 3,
+        ExtraLarge = 4
     }
 
     public enum Fuels
     {
-        Gasoline,
-        Diesel,
-        Electric,
-        Mixed
+        Gasoline = 1,
+        Diesel = 2,
+        Electric = 3,
+        Mixed = 4
     }
 }

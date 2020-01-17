@@ -1,11 +1,15 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Roadway.Core.Cars;
+using Roadway.Domain.Aggregates.Cars;
+using Roadway.Domain.Aggregates.Cars.Builder;
+using Roadway.Domain.Aggregates.Customers;
 
 namespace Roadway.Web.Cars
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CarsController : ControllerBase
     {
@@ -22,7 +26,7 @@ namespace Roadway.Web.Cars
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] {"value1", "value2"};
         }
 
         // GET: api/Cars/5
@@ -34,8 +38,30 @@ namespace Roadway.Web.Cars
 
         // POST: api/Cars
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Post([FromBody] CarRequestModel car)
         {
+            if (car.CarTypeId == null)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var carInfo = new CarBuilder(car.Vin)
+                .SetBrand(car.Brand)
+                .SetColor(car.Color)
+                .SetFuel((Fuels) car.Fuel)
+                .SetModel(car.Model)
+                .SetSize((Sizes) car.Size)
+                .SetType(new CarType {Id = car.CarTypeId.Value})
+                .SetUse((Uses) car.Use)
+                .SetVersion(car.Version)
+                .SetYear(car.Year.Value)
+                .SetLicensePlate(car.LicensePlate)
+                .SetCustomer(new Customer {Id = car.CustomerId.Value})
+                .Build();
+
+            await _carService.Create(carInfo);
+
+            return CreatedAtAction(nameof(Get), new {id = carInfo.Id}, carInfo);
         }
 
         // PUT: api/Cars/5

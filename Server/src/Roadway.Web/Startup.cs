@@ -6,10 +6,17 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Roadway.Core.Cars;
+using Roadway.Data.Contexts;
+using Roadway.Data.Repositories;
+using Roadway.Domain.Aggregates.Cars;
+using Roadway.Domain.Aggregates.Customers;
+using Roadway.Domain.Contracts;
 
 namespace Roadway.Web
 {
@@ -26,6 +33,20 @@ namespace Roadway.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<RoadwayContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            ConfigureDependencies(services);
+        }
+
+        private void ConfigureDependencies(IServiceCollection services)
+        {
+            services.AddScoped<DbContext, RoadwayContext>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(EfRepository<>));
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ICarService, CarService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
