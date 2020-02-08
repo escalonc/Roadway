@@ -40,11 +40,7 @@ namespace Roadway.Web.Cars
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CarRequestModel car)
         {
-            if (car.CarTypeId == null)
-            {
-                return BadRequest(ModelState);
-            }
-            
+
             var carInfo = new CarBuilder(car.Vin)
                 .SetBrand(car.Brand)
                 .SetColor(car.Color)
@@ -59,20 +55,20 @@ namespace Roadway.Web.Cars
                 .SetCustomer(new Customer {Id = car.CustomerId.Value})
                 .Build();
 
-            await _carService.Create(carInfo);
+            await _carService.CreateAsync(carInfo);
 
             return CreatedAtAction(nameof(Get), new {id = carInfo.Id}, carInfo);
         }
 
         // PUT: api/Cars/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int? id, [FromBody] string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(int? id)
         {
         }
     }

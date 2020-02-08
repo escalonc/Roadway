@@ -3,7 +3,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Roadway.Data.Contexts;
 using Roadway.Domain;
 using Roadway.Domain.Contracts;
 
@@ -33,7 +32,7 @@ namespace Roadway.Data.Repositories
             return await Filter(predicate).FirstAsync();
         }
 
-        public async Task<TEntity> FindById(int id)
+        public async Task<TEntity> FindByIdAsync(int id)
         {
             return await FirstOrDefaultAsync(x => x.Id == id);
         }

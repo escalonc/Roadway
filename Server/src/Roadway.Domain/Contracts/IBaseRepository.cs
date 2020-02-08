@@ -42,7 +42,7 @@ namespace Roadway.Domain.Contracts
         /// </summary>
         /// <param name="id">Entity identifier.</param>
         /// <returns>A task of the entity.</returns>
-        public Task<TEntity> FindById(int id);
+        public Task<TEntity> FindByIdAsync(int id);
 
 
         /// <summary>

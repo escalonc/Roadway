@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Roadway.Core.Exceptions;
 using Roadway.Domain.Aggregates.Cars;
@@ -17,9 +16,9 @@ namespace Roadway.Core.Cars
             _customerRepository = customerRepository;
         }
 
-        public async Task Create(Car car)
+        public async Task CreateAsync(Car car)
         {
-            var customer = await _customerRepository.FindById(car.Customer.Id);
+            var customer = await _customerRepository.FindByIdAsync(car.Customer.Id);
 
             if (customer == null)
             {

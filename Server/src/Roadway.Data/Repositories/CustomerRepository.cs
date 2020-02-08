@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Roadway.Data.Contexts;
 using Roadway.Domain.Aggregates.Customers;
 
 namespace Roadway.Data.Repositories

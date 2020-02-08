@@ -1,9 +1,6 @@
 using System.Threading.Tasks;
 using FluentAssertions;
-using Roadway.Data.Repositories;
 using Roadway.Data.Tests.Contexts;
-using Roadway.Domain.Aggregates.Cars;
-using Roadway.Domain.Aggregates.Cars.Builder;
 using Xunit;
 
 namespace Roadway.Data.Tests.Repositories.EfCoreTests

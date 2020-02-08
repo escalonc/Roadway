@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Data.Sqlite;
-using Roadway.Data.Contexts;
 
 namespace Roadway.Data.Tests.Contexts
 {

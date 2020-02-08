@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Roadway.Data.Contexts;
 using Roadway.Domain.Aggregates.Cars;
-using Roadway.Domain.Contracts;
 
 namespace Roadway.Data.Repositories
 {

@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
@@ -42,12 +41,12 @@ namespace Roadway.Core.Tests
             var customerRepositoryMock = new Mock<ICustomerRepository>();
 
             customerRepositoryMock
-                .Setup(m => m.FindById(It.Is<int>(i => i == 3)))
+                .Setup(m => m.FindByIdAsync(It.Is<int>(i => i == 3)))
                 .ReturnsAsync(
                     _stubCustomer);
 
             var carService = new CarService(carRepositoryMock.Object, customerRepositoryMock.Object);
-            await carService.Create(_stubCar);
+            await carService.CreateAsync(_stubCar);
 
             carRepositoryMock.Verify(car => car.AddAsync(_stubCar), Times.Once);
         }
@@ -59,12 +58,12 @@ namespace Roadway.Core.Tests
             var customerRepositoryMock = new Mock<ICustomerRepository>();
 
             customerRepositoryMock
-                .Setup(m => m.FindById(It.Is<int>(i => i == 2)))
+                .Setup(m => m.FindByIdAsync(It.Is<int>(i => i == 2)))
                 .ReturnsAsync(
                     _stubCustomer);
 
             var carService = new CarService(carRepositoryMock.Object, customerRepositoryMock.Object);
-            Func<Task> createCar = async () => { await carService.Create(_stubCar); };
+            Func<Task> createCar = async () => { await carService.CreateAsync(_stubCar); };
 
             createCar.Should().Throw<CustomerNotFoundException>();
         }
