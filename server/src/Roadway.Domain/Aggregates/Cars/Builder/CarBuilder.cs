@@ -10,15 +10,25 @@ namespace Roadway.Domain.Aggregates.Cars.Builder
         }
 
         public string Vin { get; }
+
         public string LicensePlate { get; private set; }
+
         public string Brand { get; private set; }
+
         public string Model { get; private set; }
+
         public string Version { get; private set; }
+
         public ushort Year { get; private set; }
+
         public string Color { get; private set; }
+
         public Fuels Fuel { get; private set; }
+        
         public Sizes Size { get; private set; }
+
         public Uses Use { get; private set; }
+
         public CarType Type { get; private set; }
 
         public Customer Customer { get; private set; }
