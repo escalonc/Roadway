@@ -12,16 +12,26 @@ export interface Props {
 function Dashboard(props: Props) {
   const [collapsed, setCollapsed] = useState(false);
 
-  const toggle = () => setCollapsed(collapsed);
+  const toggle = () => setCollapsed(!collapsed);
 
   const { children } = props;
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={["home"]}
+          defaultOpenKeys={["cars"]}
+        >
+          <Menu.Item key="home">
+            <Icon type="home" theme="filled" />
+            <span>Inicio</span>
+            <Link to="/" />
+          </Menu.Item>
           <SubMenu
-            key="brands"
+            key="cars"
             title={
               <span>
                 <Icon type="car" theme="filled" />
@@ -30,9 +40,8 @@ function Dashboard(props: Props) {
             }
           >
             <Menu.Item key="1">
-              <Link to="cars/register">
-                <span>Registro</span>
-              </Link>
+              <span>Registro</span>
+              <Link to="cars/register" />
             </Menu.Item>
           </SubMenu>
         </Menu>

@@ -40,6 +40,10 @@ namespace Roadway.Domain.Aggregates.Cars
 
         public string Color { get; set; }
 
+        public string Bank { get; set; }
+
+        public string Insurance { get; set; }
+
         public Fuels Fuel { get; set; }
 
         public Sizes Size { get; set; }
