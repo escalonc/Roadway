@@ -9,12 +9,12 @@ interface Car {
   fuel: Fuels;
   size: Sizes;
   use: Uses;
-  carType: CarType;
+  type: Type;
   bank: string;
   insurance: string;
 }
 
-interface CarType {
+interface Type {
   name: string;
 }
 
@@ -36,5 +36,5 @@ export enum Fuels {
   Gasoline = 1,
   Diesel = 2,
   Electric = 3,
-  Mixed = 4
+  Hybrid = 4
 }

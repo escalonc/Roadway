@@ -1,8 +1,14 @@
-﻿import React, { useState } from "react";
+﻿import React, { useState, createElement } from "react";
 
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu } from "antd";
+import {
+  HomeFilled,
+  CarFilled,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined
+} from "@ant-design/icons";
 import { Link } from "@reach/router";
-import "./index.css";
+import "./index.scss";
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -26,7 +32,7 @@ function Dashboard(props: Props) {
           defaultOpenKeys={["cars"]}
         >
           <Menu.Item key="home">
-            <Icon type="home" theme="filled" />
+            <HomeFilled />
             <span>Inicio</span>
             <Link to="/" />
           </Menu.Item>
@@ -34,7 +40,7 @@ function Dashboard(props: Props) {
             key="cars"
             title={
               <span>
-                <Icon type="car" theme="filled" />
+                <CarFilled />
                 <span>Autos</span>
               </span>
             }
@@ -48,22 +54,12 @@ function Dashboard(props: Props) {
       </Sider>
       <Layout>
         <Header style={{ background: "#fff", padding: 0 }}>
-          <Icon
-            className="trigger"
-            type={collapsed ? "menu-unfold" : "menu-fold"}
-            onClick={toggle}
-          />
+          {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: "trigger",
+            onClick: toggle
+          })}
         </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            background: "#fff",
-            minHeight: 280
-          }}
-        >
-          {children}
-        </Content>
+        <Content className="main-content">{children}</Content>
       </Layout>
     </Layout>
   );
